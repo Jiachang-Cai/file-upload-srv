@@ -1,0 +1,18 @@
+runmode = "debug"   # 开发模式, debug, release, test
+addr = ":9972"
+appid = "350149"
+apikey= "5d77a15c20cd4350b6df20ece75cf15e"
+
+[db]
+    [db.master]
+        host = "127.0.0.1"
+        port = 5432
+        dbname = "gamesdk"
+        user = "zwdev"
+        password = "zwdev2020"
+
+[redis]
+    [redis.game]
+        addr = "127.0.0.1:6379"
+        db = 1
+        password = "zwdev2020"

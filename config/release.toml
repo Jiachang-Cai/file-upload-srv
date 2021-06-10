@@ -1,0 +1,18 @@
+runmode = "release"   # 开发模式, debug, release, test
+addr = ":9972"
+appid = "350149"
+apikey= "5d77a15c20cd4350b6df20ece75cf15e"
+
+[db]
+    [db.master]
+        host = "172.17.0.4"
+        port = 5432
+        dbname = "gamesdk"
+        user = "xwgame"
+        password = "XbNa2@J-oXVMeyE6Da"
+
+[redis]
+    [redis.game]
+        addr = "172.17.0.14:6379"
+        db = 1
+        password = "crs-aq1gw5oq:B6@8ZcACjxMqkn!"
