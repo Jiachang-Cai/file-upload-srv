@@ -3,7 +3,7 @@ package usort
 import "sort"
 
 type Pair struct {
-	Key int
+	Key   int
 	Value int
 }
 

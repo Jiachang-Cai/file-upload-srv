@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"fmtsmsapi/utils/app"
+	"file-upload-srv/utils/app"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"

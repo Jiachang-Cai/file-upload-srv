@@ -1,12 +1,12 @@
 package middlewares
 
 import (
+	"bytes"
 	"github.com/mssola/user_agent"
 	"github.com/tomasen/realip"
-	"time"
-	"bytes"
 	"io/ioutil"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-xweb/log"
@@ -47,7 +47,7 @@ func Logging() gin.HandlerFunc {
 			path,
 			ua.Platform(),
 			ua.OS(),
-			bodyStr,
+			"",
 		)
 	}
 }

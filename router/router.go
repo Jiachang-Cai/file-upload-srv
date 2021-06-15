@@ -1,12 +1,13 @@
 package router
 
 import (
-	"github.com/gin-contrib/cors"
 	"net/http"
 
-	h "fmtsmsapi/handlers"
-	"fmtsmsapi/router/middlewares"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+
+	h "file-upload-srv/handlers"
+	"file-upload-srv/router/middlewares"
 )
 
 func Load(g *gin.Engine) *gin.Engine {
@@ -23,15 +24,9 @@ func Load(g *gin.Engine) *gin.Engine {
 	g.NoRoute(func(c *gin.Context) {
 		c.String(http.StatusNotFound, "The incorrect API route.")
 	})
-	callback := g.Group("/callback")
+	callback := g.Group("/upload")
 	{
-		callback.POST("/status", h.CallBackStatus) // 彩信发送回调
-		callback.POST("/tmpl", h.CallBackTmpl)   // 彩信审核回调
-		callback.GET("/test", h.CallBackTest)
-	}
-	account := g.Group("/account")
-	{
-		account.GET("balance", h.AccountBalance)
+		callback.POST("/add", h.UploadAdd) // 上传
 	}
 
 	return g

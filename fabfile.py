@@ -10,7 +10,7 @@ from fabric.api import *
 import datetime
 
 # 项目名称
-PROJECT_NAME = "fmtsmsapi"
+PROJECT_NAME = "file-upload-srv"
 LOCAL_FILE_NAME = PROJECT_NAME
 WORK_SPACE = "/data/workspace"
 # 当天日期
@@ -19,11 +19,12 @@ CURRENT_DAY_STRING = datetime.datetime.today().strftime("%Y%m%d%H%M")
 env.user = 'root'
 
 def build():
+    local("gofmt -s -w .", capture=False)
     local("go-bindata  -pkg config -o config/bindata.go config/", capture=False)
     command = "GOOS=linux go build"
     local(command, capture=False)
 
-@hosts("129.211.42.179")
+@hosts("127.0.0.1")
 def dev():
     """测试环境部署"""
     remote_run_name = WORK_SPACE + "/" + PROJECT_NAME + "/" + LOCAL_FILE_NAME
@@ -42,7 +43,7 @@ def dev():
     command = "rm %s" % PROJECT_NAME
     local(command, capture=False)
 
-@hosts("172.81.237.24")
+@hosts("127.0.0.1")
 def deploy():
     """正式环境部署"""
     remote_run_name = WORK_SPACE + "/" + PROJECT_NAME + "/" + LOCAL_FILE_NAME

@@ -3,14 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"fmtsmsapi/cache"
-	"fmtsmsapi/models"
 	"net/http"
 	"os"
 	"runtime"
 
-	"fmtsmsapi/config"
-	"fmtsmsapi/router"
+	"file-upload-srv/config"
+	"file-upload-srv/router"
 
 	"github.com/facebookgo/grace/gracehttp"
 	"github.com/gin-gonic/gin"
@@ -33,10 +31,10 @@ func main() {
 		panic(err)
 	}
 	// init db
-	models.DB.Init()
-	defer models.DB.Close()
+	//models.DB.Init()
+	//defer models.DB.Close()
 	// init redis
-	cache.RedisDB.Init()
+	//cache.RedisDB.Init()
 	// set gin mode
 	gin.SetMode(viper.GetString("runmode"))
 	g := gin.New()

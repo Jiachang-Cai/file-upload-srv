@@ -70,7 +70,7 @@ func ListResponse(c *gin.Context, data interface{}, total uint64) {
 }
 
 func LogError(c *gin.Context, err ...error) string {
-	errString := fmt.Sprintf("uri:%v method:%v client_ip:%v request:%+v err:%+v", c.Request.RequestURI, c.Request.Method, c.ClientIP(), c.GetString("bodyStr"), err)
+	errString := fmt.Sprintf("uri:%v method:%v client_ip:%v request:%+v err:%+v", c.Request.RequestURI, c.Request.Method, c.ClientIP(), "", err)
 	c.Set("error", errString)
 	return errString
 }

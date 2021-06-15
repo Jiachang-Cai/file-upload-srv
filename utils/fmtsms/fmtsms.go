@@ -35,7 +35,7 @@ type FmtSmsRsp struct {
 type FmtSmsRspNew struct {
 	Code string `json:"code"`
 	Msg  string `json:"msg"`
-	Data struct{
+	Data struct {
 		Balance int `json:"balance"`
 	} `json:"data"`
 }
@@ -70,7 +70,7 @@ func (c *FmtSms) BatchSend() {
 
 }
 
-func (c *FmtSms) GetBalance() (*FmtSmsRspNew, error){
+func (c *FmtSms) GetBalance() (*FmtSmsRspNew, error) {
 	encoded := url.Values{}
 	for k, v := range c.ParamsNew() {
 		encoded.Set(k, v)
@@ -79,7 +79,7 @@ func (c *FmtSms) GetBalance() (*FmtSmsRspNew, error){
 
 	request := gorequest.New().Timeout(3 * time.Minute)
 	reqUrl := "http://39.98.184.179:8081/api/sms/balance" + "?" + encoded.Encode()
-	resp, _, errs := request.Get(reqUrl).Send("&"+encoded.Encode()).EndStruct(&rspData)
+	resp, _, errs := request.Get(reqUrl).Send("&" + encoded.Encode()).EndStruct(&rspData)
 	if resp.StatusCode != 200 {
 		return nil, errors.New(fmt.Sprintf("错误响应code url:%s", reqUrl))
 	}
@@ -92,7 +92,6 @@ func (c *FmtSms) GetBalance() (*FmtSmsRspNew, error){
 	}
 	return &rspData, nil
 }
-
 
 func (c *FmtSms) Sign(timestamp int64) string {
 	str := fmt.Sprintf("%s%s%d%s", c.ApiKey, c.AppId, timestamp, c.ApiKey)
@@ -114,9 +113,9 @@ func (c *FmtSms) Params() map[string]string {
 func (c *FmtSms) ParamsNew() map[string]string {
 	timestamp := time.Now().Unix() * 1000
 	data := map[string]string{
-		"userid":     c.AppId,
-		"ts": strconv.FormatInt(timestamp, 10),
-		"sign":      c.SignNew(timestamp),
+		"userid": c.AppId,
+		"ts":     strconv.FormatInt(timestamp, 10),
+		"sign":   c.SignNew(timestamp),
 	}
 	return data
 }

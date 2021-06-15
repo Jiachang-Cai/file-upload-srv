@@ -1,12 +1,12 @@
 package password
 
 import (
-	"strconv"
-	"fmt"
-	"strings"
-	"encoding/hex"
-	"math/rand"
 	"crypto"
+	"encoding/hex"
+	"fmt"
+	"math/rand"
+	"strconv"
+	"strings"
 	"time"
 )
 
